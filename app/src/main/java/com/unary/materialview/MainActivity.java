@@ -1,9 +1,12 @@
 package com.unary.materialview;
 
-import android.support.v7.app.ActionBarActivity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +15,15 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.textView).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView image = (ImageView)findViewById(R.id.imageView);
+                Bitmap bitmap = Helper.getBitmapWithBorder(findViewById(R.id.textView), 3);
+                image.setImageBitmap(bitmap);
+            }
+        });
+
     }
 
 
@@ -28,7 +40,9 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        ImageView image = (ImageView) findViewById(R.id.imageView);
+        Bitmap bitmap = Helper.getBitmapWithBorder(findViewById(R.id.textView), 3);
+        image.setImageBitmap(bitmap);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
