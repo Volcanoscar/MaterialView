@@ -21,4 +21,14 @@
         android:layout_centerInParent="true"
         android:id="@+id/imageView"/>
 
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:layout_above="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:numStars="6"
+        android:rating="4"/>
+
 </RelativeLayout>

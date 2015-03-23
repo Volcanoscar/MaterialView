@@ -2,6 +2,7 @@ package com.unary.materialview;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,11 +26,28 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        MaterialView materialView  = new MaterialView(this);
-        ((ViewGroup) getWindow().getDecorView()).addView(materialView);
+
 
     }
 
+    @Override
+    protected void onResume() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                MaterialView materialView  = new MaterialView(MainActivity.this);
+                ((ViewGroup) getWindow().getDecorView()).addView(materialView);
+                View targetView = findViewById(R.id.ratingBar);
+                Bitmap bitmap = Helper.getBitmapFromView(targetView);
+                int[] location = new int[2];
+                targetView.getLocationOnScreen(location);
+                materialView.addBitmap(bitmap, location[0], location[1]);
+            }
+        }, 1000);
+
+        super.onResume();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
